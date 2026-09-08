@@ -52,17 +52,22 @@ Adding a future tool = one `TOOLS` entry + one `<section id="view-<id>" hidden>`
 - **Growth pattern:** see Data model above — this is what phase 1 exists to prove.
 
 ### Phase 1 — Portal shell + first 2 tools
-- [ ] Status: not started
-- Home view: grid of tool cards rendered from `TOOLS` (no "coming soon"
-  placeholder — just the 2 real cards).
-- Tool 1, Unit Converter: categories Length/Weight/Temperature; two
-  synced value+unit fields, editable in either direction.
-- Tool 2, Color Palette Generator: `<input type="color">` synced with a
-  hex text input; generates ~7 shades via HSL lightness steps; click a
-  swatch to copy its hex (Clipboard API + visual/live-region confirmation).
-- Accessibility baseline: label/for on all inputs, one shared
-  `aria-live` region for copy confirmations, focus moves to the new
-  view's heading on route change.
+- [x] Portal shell shipped: home grid rendered from `TOOLS`, hash router,
+  theme toggle, header — all in `index.html`, styled per the Minimal Mono
+  direction (IBM Plex Mono/Sans, neutral palette). Two placeholder
+  `view-<id>` sections (Unit Converter, Color Palette Generator) prove
+  cards open their tool, "back to all tools" and empty/unrecognized
+  hashes return home, and a direct link to a tool's hash lands on it.
+  Focus moves to each view's heading on route change.
+- [ ] Tool 1, Unit Converter: real conversion logic (categories
+  Length/Weight/Temperature; two synced value+unit fields, editable in
+  either direction) — still a placeholder.
+- [ ] Tool 2, Color Palette Generator: real palette generation
+  (`<input type="color">` synced with hex text input, ~7 HSL-lightness
+  shades, click-to-copy hex via Clipboard API) — still a placeholder.
+- [ ] Accessibility baseline for the tools themselves: label/for on all
+  inputs, one shared `aria-live` region for copy confirmations (add
+  alongside the real tool logic above).
 
 ### Phase 2+ — Additional tools (not yet scoped)
 - No tools chosen yet. When starting a new one, follow the Data model
