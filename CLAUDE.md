@@ -10,3 +10,10 @@ Guidance for Claude Code (and any other contributor, human or AI) working in thi
 2. **Vanilla only.** Use plain HTML, CSS, and JavaScript only — no frameworks or libraries that require a build step (no React, Vue, TypeScript, JSX, Sass, etc.), and no build tooling of any kind (no bundlers, transpilers, package.json scripts, etc.). Externally linked libraries loaded directly via `<script src>`/`<link>` in `index.html` are fine as long as they need no build step.
 
 When making changes, keep everything inside `index.html` and avoid introducing any second HTML file, separate asset file, or build process.
+
+## Tech stack (hard constraints — do not deviate)
+- Vanilla HTML, CSS, and JavaScript only. No React, Vue, or any JS framework.
+- Tailwind CSS for all styling (via CDN only).
+- No backend, no database. Fully static site.
+- A toggle for light and dark theme, with the choice remembered
+  across visits.
