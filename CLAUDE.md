@@ -22,3 +22,49 @@ When making changes, keep everything inside `index.html` and avoid introducing a
 - Before implementing any non-trivial feature, ask clarifying
   questions about scope, edge cases, and constraints first —
   don't propose a plan until you've asked.
+
+## Feature Plan
+
+A portal where visitors browse and try a growing collection of small
+web tools/learning artifacts, all inside the single `index.html`.
+Mark a phase's checkbox done once it ships; once done, feel free to
+prune that phase's detail down to a one-line summary to keep this
+section skimmable.
+
+### Data model
+```js
+const TOOLS = [
+  { id: 'unit-converter', title: 'Unit Converter', description: '...', icon: '📐' },
+  { id: 'color-palette', title: 'Color Palette Generator', description: '...', icon: '🎨' }
+];
+```
+Adding a future tool = one `TOOLS` entry + one `<section id="view-<id>" hidden>`
++ that tool's own init function. The grid, router, and nav read from
+`TOOLS` and never need to change.
+
+### Key flows
+- **Routing:** hash-based (`#/` = home, `#/<tool-id>` = that tool). Router
+  runs on load and on `hashchange`; unrecognized/empty hash falls back to
+  home. Refreshing on a tool's hash lands directly on that tool.
+- **Theme:** `dark` class on `<html>`, persisted to `localStorage.theme`,
+  restored by an inline pre-Tailwind `<script>` in `<head>` before first
+  paint (no flash). Toggle button lives in the header, visible on every view.
+- **Growth pattern:** see Data model above — this is what phase 1 exists to prove.
+
+### Phase 1 — Portal shell + first 2 tools
+- [ ] Status: not started
+- Home view: grid of tool cards rendered from `TOOLS` (no "coming soon"
+  placeholder — just the 2 real cards).
+- Tool 1, Unit Converter: categories Length/Weight/Temperature; two
+  synced value+unit fields, editable in either direction.
+- Tool 2, Color Palette Generator: `<input type="color">` synced with a
+  hex text input; generates ~7 shades via HSL lightness steps; click a
+  swatch to copy its hex (Clipboard API + visual/live-region confirmation).
+- Accessibility baseline: label/for on all inputs, one shared
+  `aria-live` region for copy confirmations, focus moves to the new
+  view's heading on route change.
+
+### Phase 2+ — Additional tools (not yet scoped)
+- No tools chosen yet. When starting a new one, follow the Data model
+  pattern above; ask clarifying questions per Working conventions before
+  planning it in detail.
